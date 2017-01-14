@@ -12,16 +12,23 @@
 
 int main(int argc, char *argv[])
 {
+	DIR *path;
 	char searched_file[MAX_FILENAME_LENGH];
 	char searched_in_path[MAX_PATH_LENGH];
+	int pointer_to_dirent_array = 0;
+
 	printf("FASTSCAN %s\n", VERSION);
 	if(argc < 3)
 	{
 		puts("You gave too few arguments. Aborting.");
 		return 1;
 	}
-	path = DIR opendir(searched_in_path);
-
+	strcpy(searched_file, argv[2]);
+	strcpy(searched_in_path, argv[1]);
+	path = opendir(searched_in_path);
+	pointer_to_dirent_array = readdir(path);
+	print("NAME: %s", pointer_to_dirent_array.d_name[]);
+	closedir(path);
 	return 0;
 }
 
