@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
 			printf("Nothing left\n");
 			break;
 		}
+		/* LEARN THIS */
 		printf("NAME: %s\n", filestuff->d_name);
 		printf("INODE: %lu\n", filestuff->d_ino);
 	}
