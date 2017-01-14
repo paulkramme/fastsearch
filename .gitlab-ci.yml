@@ -10,4 +10,4 @@ build:
     - make
   artifacts:
     paths:
-      - mybinary
+      - fast-search
