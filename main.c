@@ -7,31 +7,21 @@
 
 #define VERSION "v0.1"
 #define MAX_FILENAME_LENGH 256
+#define MAX_PATH_LENGH 4096
 #define PERMS 0777
 
 int main(int argc, char *argv[])
 {
-	printf("Fast Search %s\n", VERSION);
-
-	if(argc > 2)
+	char searched_file[MAX_FILENAME_LENGH];
+	char searched_in_path[MAX_PATH_LENGH];
+	printf("FASTSCAN %s\n", VERSION);
+	if(argc < 3)
 	{
-		if(strcmp(argv[1], "add") == 0)
-		{
-			int conffile = 0;
-			char dir_to_add[256];
-
-			strcpy(dir_to_add, argv[2]);
-			printf("Adding dir %s\n", dir_to_add);
-			conffile = open("fs.conf", O_APPEND | O_RDWR | O_CREAT, PERMS);
-			write(conffile, dir_to_add, sizeof(dir_to_add));
-			close(conffile);
-		}
-	}
-	else
-	{
-		puts("You gave to few commands...");
+		puts("You gave too few arguments. Aborting.");
 		return 1;
 	}
+	path = DIR opendir(searched_in_path);
+
 	return 0;
 }
 
