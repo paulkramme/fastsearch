@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
 	char searched_file[MAX_FILENAME_LENGH];
 	char searched_in_path[MAX_PATH_LENGH];
 	struct dirent *filestuff;
+	char path_to_found_file[MAX_PATH_LENGH];
 
 	printf("FASTSCAN %s\n", VERSION);
 	if(argc < 3)
@@ -33,12 +34,21 @@ int main(int argc, char *argv[])
 		filestuff = readdir(path);
 		if(filestuff == NULL)
 		{
-			printf("Nothing left\n");
+			printf("Not found.\n");
 			break;
 		}
 		/* LEARN THIS */
+/*
 		printf("NAME: %s\n", filestuff->d_name);
 		printf("INODE: %lu\n", filestuff->d_ino);
+*/
+		if(strcmp(filestuff->d_name, searched_file) == 0)
+		{
+			printf("Found!\n");
+			strcpy(path_to_found_file, strcat(searched_in_path, filestuff->d_name));
+			printf("%s\n", path_to_found_file);
+			break;
+		}
 	}
 	closedir(path);
 	return 0;
