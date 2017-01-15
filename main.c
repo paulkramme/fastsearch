@@ -18,6 +18,9 @@ int main(int argc, char *argv[])
 	char searched_in_path[MAX_PATH_LENGH];
 	struct dirent *filestuff;
 	char path_to_found_file[MAX_PATH_LENGH];
+	short int found_something;
+
+	found_something = 0;
 
 	printf("FASTSCAN %s\n", VERSION);
 	if(argc < 3)
@@ -34,7 +37,14 @@ int main(int argc, char *argv[])
 		filestuff = readdir(path);
 		if(filestuff == NULL)
 		{
-			printf("Not found.\n");
+			if(found_something == 0)
+			{
+				printf("The specified file or directory weren't found.\n");
+			}
+			else
+			{
+				printf("Not found.\n");
+			}
 			break;
 		}
 		/* LEARN THIS */
@@ -47,7 +57,7 @@ int main(int argc, char *argv[])
 			printf("Found!\n");
 			strcpy(path_to_found_file, strcat(searched_in_path, filestuff->d_name));
 			printf("%s\n", path_to_found_file);
-			break;
+			found_something = 1;
 		}
 	}
 	closedir(path);
