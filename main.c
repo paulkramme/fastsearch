@@ -6,6 +6,7 @@
 #include <dirent.h>
 
 #define VERSION "v0.1"
+
 #define MAX_FILENAME_LENGH 256
 #define MAX_PATH_LENGH 4096
 
