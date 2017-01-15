@@ -7,6 +7,7 @@
 
 #define VERSION "v0.1"
 
+/*Modify if not correct for your system*/
 #define MAX_FILENAME_LENGH 256
 #define MAX_PATH_LENGH 4096
 
