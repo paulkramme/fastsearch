@@ -1,4 +1,4 @@
 all:
-	clang -Weverything main.c -o fast-search -ansi
+	clang -Weverything main.c -o fastsearch -ansi
 clean:
-	rm fast-search
+	rm fastsearch

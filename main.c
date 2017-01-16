@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 	strcpy(searched_file, argv[2]);
 	strcpy(searched_in_path, argv[1]);
 	path = opendir(searched_in_path);
+
 	for(;;)
 	{
 		filestuff = readdir(path);
@@ -39,7 +40,7 @@ int main(int argc, char *argv[])
 		{
 			if(found_something == 0)
 			{
-				printf("The specified file or directory weren't found.\n");
+				printf("The specified file or directory wasn't found.\n");
 			}
 			else
 			{
