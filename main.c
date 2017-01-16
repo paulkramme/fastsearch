@@ -4,12 +4,37 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <errno.h>
 
-#define VERSION "v0.1"
 
 /*Modify if not correct for your system*/
 #define MAX_FILENAME_LENGH 256
 #define MAX_PATH_LENGH 4096
+
+
+/*Prototypes*/
+int isfiledirectory(const char name[]);
+
+
+int isfiledirectory(const char name[])
+{
+	DIR *directory = opendir(name);
+
+	if(directory != NULL)
+	{
+		closedir(directory);
+		return 0;
+	}
+
+	if(errno == ENOTDIR)
+	{
+		return 1;
+	}
+
+	/*if something is going seriously wrong...*/
+	return -1;
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -22,7 +47,7 @@ int main(int argc, char *argv[])
 
 	found_something = 0;
 
-	printf("FASTSCAN %s\n", VERSION);
+	/*printf("FASTSCAN %s\n", VERSION);*/
 	if(argc < 3)
 	{
 		puts("You gave too few arguments. Aborting.");
@@ -38,6 +63,10 @@ int main(int argc, char *argv[])
 		filestuff = readdir(path);
 		if(filestuff == NULL)
 		{
+			if(isfiledirectory(filestuff->d_name) == 0)
+			{
+				path = strcat(searched_in_path, filestuff->d_name);
+			}
 			if(found_something == 0)
 			{
 				printf("The specified file or directory wasn't found.\n");
