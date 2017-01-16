@@ -77,11 +77,7 @@ int main(int argc, char *argv[])
 			}
 			break;
 		}
-		/* LEARN THIS */
-/*
-		printf("NAME: %s\n", filestuff->d_name);
-		printf("INODE: %lu\n", filestuff->d_ino);
-*/
+
 		if(strcmp(filestuff->d_name, searched_file) == 0)
 		{
 			printf("Found!\n");
@@ -93,4 +89,3 @@ int main(int argc, char *argv[])
 	closedir(path);
 	return 0;
 }
-
