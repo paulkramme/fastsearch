@@ -6,10 +6,13 @@
 #include <dirent.h>
 #include <errno.h>
 
-
 /*Modify if not correct for your system*/
 #define MAX_FILENAME_LENGH 256
 #define MAX_PATH_LENGH 4096
+
+/*Typedefs*/
+typedef enum { false, true } bool;
+
 
 
 /*Prototypes*/
@@ -43,11 +46,10 @@ int main(int argc, char *argv[])
 	char searched_in_path[MAX_PATH_LENGH];
 	struct dirent *filestuff;
 	char path_to_found_file[MAX_PATH_LENGH];
-	short int found_something;
+	bool found_something;
 
-	found_something = 0;
+	found_something = false;
 
-	/*printf("FASTSCAN %s\n", VERSION);*/
 	if(argc < 3)
 	{
 		puts("You gave too few arguments. Aborting.");
@@ -83,7 +85,7 @@ int main(int argc, char *argv[])
 			printf("Found!\n");
 			strcpy(path_to_found_file, strcat(searched_in_path, filestuff->d_name));
 			printf("%s\n", path_to_found_file);
-			found_something = 1;
+			found_something = true;
 		}
 	}
 	closedir(path);
