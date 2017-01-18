@@ -6,7 +6,7 @@
 #include <dirent.h>
 #include <errno.h>
 
-/*Modify if not correct for your system*/
+/*MAX values for every linux system... Only change if you know better.*/
 #define MAX_FILENAME_LENGH 256
 #define MAX_PATH_LENGH 4096
 
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 			}
 			else
 			{
-				printf("Not found.\n");
+				puts("Not found.");
 			}
 			break;
 		}
