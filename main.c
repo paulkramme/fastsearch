@@ -46,7 +46,6 @@ int main(int argc, char *argv[])
 	struct dirent *filestuff;
 	char path_to_found_file[MAX_PATH_LENGH];
 	bool found_something;
-
 	found_something = false;
 
 	if(argc < 3)
@@ -54,6 +53,11 @@ int main(int argc, char *argv[])
 		puts("Too few arguments. Aborting.");
 		puts("--help for help");
 		return 1;
+	}
+	
+	if(strcmp(argv[1], "--help") == 1)
+	{
+		puts("Help for fastsearch");
 	}
 
 	strcpy(searched_file, argv[2]);
