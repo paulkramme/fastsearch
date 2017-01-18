@@ -1,3 +1,5 @@
+#define VERSION "0.1"
+/*This software is licensed under CC0*/
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -12,8 +14,6 @@
 
 /*Typedefs*/
 typedef enum { false, true } bool;
-
-
 
 /*Prototypes*/
 int isfiledirectory(const char name[]);
@@ -52,7 +52,8 @@ int main(int argc, char *argv[])
 
 	if(argc < 3)
 	{
-		puts("You gave too few arguments. Aborting.");
+		puts("Too few arguments. Aborting.");
+		puts("--help for help");
 		return 1;
 	}
 
@@ -88,6 +89,8 @@ int main(int argc, char *argv[])
 			found_something = true;
 		}
 	}
+	puts("Finishing...");
 	closedir(path);
 	return 0;
 }
+
