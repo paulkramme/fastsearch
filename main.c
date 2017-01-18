@@ -1,4 +1,3 @@
-#define VERSION "0.1"
 /*This software is licensed under CC0*/
 #include <stdio.h>
 #include <string.h>
