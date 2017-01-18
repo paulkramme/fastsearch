@@ -1,3 +1,4 @@
+#define VERSION "0.1"
 /*This software is licensed under CC0*/
 #include <stdio.h>
 #include <string.h>
@@ -13,8 +14,6 @@
 
 /*Typedefs*/
 typedef enum { false, true } bool;
-
-
 
 /*Prototypes*/
 int isfiledirectory(const char name[]);
@@ -89,6 +88,8 @@ int main(int argc, char *argv[])
 			found_something = true;
 		}
 	}
+	puts("Finishing...");
 	closedir(path);
 	return 0;
 }
+
