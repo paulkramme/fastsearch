@@ -48,6 +48,12 @@ int main(int argc, char *argv[])
 	bool found_something;
 	found_something = false;
 
+	if(strcmp(argv[1], "--help") == 0)
+	{
+		puts("Help draft");
+		return 0;
+	}
+
 	if(argc < 3)
 	{
 		puts("Too few arguments. Aborting.");
@@ -55,11 +61,6 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 	
-	if(strcmp(argv[1], "--help") == 1)
-	{
-		puts("Help for fastsearch");
-	}
-
 	strcpy(searched_file, argv[2]);
 	strcpy(searched_in_path, argv[1]);
 	path = opendir(searched_in_path);
