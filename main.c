@@ -52,7 +52,8 @@ int main(int argc, char *argv[])
 
 	if(argc < 3)
 	{
-		puts("You gave too few arguments. Aborting.");
+		puts("Too few arguments. Aborting.");
+		puts("--help for help");
 		return 1;
 	}
 
