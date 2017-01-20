@@ -11,6 +11,8 @@
 #define MAX_FILENAME_LENGH 256
 #define MAX_PATH_LENGH 4096
 
+/*static settings*/
+const char conffilepath[] = "/etc/fastsearch/fastsearch.conf";
 /*Typedefs*/
 typedef enum { false, true } bool;
 
@@ -40,60 +42,22 @@ int isfiledirectory(const char name[])
 
 int main(int argc, char *argv[])
 {
-	DIR *path;
-	char searched_file[MAX_FILENAME_LENGH];
-	char searched_in_path[MAX_PATH_LENGH];
-	struct dirent *filestuff;
-	char path_to_found_file[MAX_PATH_LENGH];
-	bool found_something;
-	found_something = false;
+	/*Declarations*/
+	FILE *configfile;
+	char confdirs[1000];
 
-	if(strcmp(argv[1], "--help") == 0)
-	{
-		puts("Help draft");
-		return 0;
-	}
-
-	if(argc < 3)
-	{
-		puts("Too few arguments. Aborting.");
-		puts("--help for help");
-		return 1;
-	}
+	/*fd's*/
+	configfile = fopen(conffilepath, "r");
 	
-	strcpy(searched_file, argv[2]);
-	strcpy(searched_in_path, argv[1]);
-	path = opendir(searched_in_path);
-
-	for(;;)
+	/*code*/
+	while(fgets(confdirs, 1000, configfile))
 	{
-		filestuff = readdir(path);
-		if(filestuff == NULL)
-		{
-			if(isfiledirectory(filestuff->d_name) == 0)
-			{
-				path = strcat(searched_in_path, filestuff->d_name);
-			}
-			if(found_something == 0)
-			{
-				printf("The specified file or directory wasn't found.\n");
-			}
-			else
-			{
-				puts("Not found.");
-			}
-			break;
-		}
-
-		if(strcmp(filestuff->d_name, searched_file) == 0)
-		{
-			printf("Found!\n");
-			strcpy(path_to_found_file, strcat(searched_in_path, filestuff->d_name));
-			printf("%s\n", path_to_found_file);
-			found_something = true;
-		}
+		/*Remove ending newline and reassign back to original variable*/
+		strcpy(confdirs, strtok(confdirs, "\n"));
+		puts(confdirs);
 	}
-	puts("Finishing...");
-	closedir(path);
+
+	/*close fd's*/
+	close(configfile);	
 	return 0;
 }
