@@ -79,5 +79,4 @@ func main() {
 	go scanloop(done, ossig, conf.Scan_location, conf.Scan_interval, conf.Verbose_file_printing)
 
 	<-done
-	fmt.Println("EXITING...")
 }
